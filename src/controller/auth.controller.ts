@@ -26,7 +26,7 @@ export const handleLogin = async (
 
     const user = await User.findOne({ email });
     if (!user) {
-      return next(createError(404, "User not found"));
+      return next(createError(404, "User not found. Please login"));
     }
 
     const matchPassword = await bcrypt.compare(password, user.password);

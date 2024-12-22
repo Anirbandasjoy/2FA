@@ -17,7 +17,7 @@ export const handleUserRegistation = async (
   const existingUser = await User.findOne({ email });
 
   if (existingUser && existingUser.isActive) {
-    next(createError(400, "User already exists and is verified"));
+    return next(createError(400, "User already exists and verified"));
   }
 
   if (existingUser) {

@@ -37,7 +37,7 @@ app.get("/", (_req: Request, res: Response) => {
 app.use("/api/v1", limiter, rootRouter);
 
 app.use((_req: Request, _res: Response, next: NextFunction) => {
-  next(createError(404, "route not found"));
+  return next(createError(404, "route not found"));
 });
 
 app.use(((err: any, _req: Request, res: Response, _next: NextFunction) => {

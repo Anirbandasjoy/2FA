@@ -15,10 +15,15 @@ export const handleUserRegistation = async (
   const { name, email, password } = req.body;
 
   const existingUser = await User.findOne({ email });
+
+  if (existingUser && existingUser.isActive) {
+    next(createError(400, "User already exists and is verified"));
+  }
+
   if (existingUser) {
     if (!existingUser.isActive) {
       const newVerificationCode = Math.floor(
-        100000 + Math.random() * 900000
+        1000 + Math.random() * 9000
       ).toString();
       existingUser.verificationCode = newVerificationCode;
       existingUser.verificationCodeExpiresAt = new Date(
@@ -46,9 +51,7 @@ export const handleUserRegistation = async (
   }
 
   const hashPassword = await bcrypt.hash(password, 10);
-  const verificationCode = Math.floor(
-    100000 + Math.random() * 900000
-  ).toString();
+  const verificationCode = Math.floor(1000 + Math.random() * 9000).toString();
   const verificationCodeExpiresAt = new Date(Date.now() + 3 * 60 * 1000);
 
   await User.create({
@@ -86,14 +89,16 @@ export const handleVerify = async (
   res: Response,
   next: NextFunction
 ): Promise<any> => {
-  
   const { email, verificationCode } = req.body;
-  
 
   try {
     const user = await User.findOne({ email });
     if (!user) {
       return next(createError(404, "User not found"));
+    }
+
+    if (user.isActive) {
+      return next(createError(400, "User is already verified"));
     }
 
     if (user.verificationCodeExpiresAt === null) {
@@ -157,7 +162,7 @@ export const handleResendVerificationCode = async (
     }
 
     const newVerificationCode = Math.floor(
-      100000 + Math.random() * 900000
+      1000 + Math.random() * 9000
     ).toString();
     user.verificationCode = newVerificationCode;
     user.verificationCodeExpiresAt = new Date(Date.now() + 3 * 60 * 1000);

@@ -1,0 +1,21 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.jwt_refresh_secret = exports.jwt_access_secret = exports.dbURL = exports.smtpPassword = exports.smtpUserName = exports.PORT = exports.createError = void 0;
+const http_errors_1 = __importDefault(require("http-errors"));
+exports.createError = http_errors_1.default;
+require("dotenv/config");
+const PORT = process.env.PORT || 5000;
+exports.PORT = PORT;
+const smtpUserName = process.env.SMTP_EMAIL;
+exports.smtpUserName = smtpUserName;
+const smtpPassword = process.env.SMTP_PASSWORD;
+exports.smtpPassword = smtpPassword;
+const dbURL = process.env.dbURL || "mongodb://localhost:27017/authenticationCodeDB";
+exports.dbURL = dbURL;
+const jwt_access_secret = process.env.JWT_ACCESS_SECRET || "dfdfdsfdfdfdsf";
+exports.jwt_access_secret = jwt_access_secret;
+const jwt_refresh_secret = process.env.JWT_REFRESH_SECRET || "dfhkdsfhkdsfhkdsf";
+exports.jwt_refresh_secret = jwt_refresh_secret;

@@ -6,7 +6,7 @@ if (!dbURL) {
     "Database URL (dbURL) is not defined in the environment variables."
   );
 }
-
+// db connection
 const dbConnection = async () => {
   try {
     await mongoose.connect(dbURL as string);

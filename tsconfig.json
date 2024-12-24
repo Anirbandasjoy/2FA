@@ -3,7 +3,7 @@
     "target": "es2016",
     "lib": ["ES6"],
     "module": "commonjs",
-    "rootDir": "./",
+    "rootDir": "./src",
     "baseUrl": "./src",
     "paths": {
       "@/*": ["*"]

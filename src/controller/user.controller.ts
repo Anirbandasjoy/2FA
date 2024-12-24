@@ -125,7 +125,7 @@ export const handleVerify = async (
         _id: user._id as Types.ObjectId,
         name: user.name,
         email: user.email,
-        role: user.role,
+        role: user.role as number,
       },
       res,
       next,

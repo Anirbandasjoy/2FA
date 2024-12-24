@@ -67,7 +67,7 @@ interface userTypes {
   _id: Types.ObjectId;
   name: string;
   email: string;
-  role: string;
+  role: number;
 }
 
 interface IaccessRefreshTokenAndCookieSeter {

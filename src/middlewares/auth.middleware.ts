@@ -38,7 +38,7 @@ export const isLogOut = (req: Request, res: Response, next: NextFunction) => {
 export const isAdmin = (req: Request, res: Response, next: NextFunction) => {
   try {
     if (req.user) {
-      if (req.user.role !== "admin") {
+      if (req.user.role !== 2000080) {
         return next(createError(403, "Fobidden access"));
       }
     }

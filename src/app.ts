@@ -22,7 +22,7 @@ app.use((_req, res, next) => {
 
 app.use(
   cors({
-    origin: ["https://authnexus.vercel.app"],
+    origin: ["https://authnexus.vercel.app", "http://localhost:3000"],
     credentials: true,
   })
 );

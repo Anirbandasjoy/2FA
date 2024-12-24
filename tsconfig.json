@@ -4,9 +4,9 @@
     "lib": ["ES6"],
     "module": "commonjs",
     "rootDir": "./src",
-    "baseUrl": "./src",
+    "baseUrl": "./",
     "paths": {
-      "@/*": ["*"]
+      "@/*": ["src/*"]
     },
     "typeRoots": ["./src/types", "./node_modules/@types"],
     "types": ["node", "express"],
